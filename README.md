@@ -1,0 +1,1 @@
+This is an implementation of a doubley linked list that stores data in each node, without using a pointer to a seperate memory location. It is based on the implementation by Kyle Loudon in "Mastering Algorithms with C." However, it does not use simply a void pointer.;
