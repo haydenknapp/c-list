@@ -4,7 +4,7 @@
 #include <stdlib.h>
 
 typedef struct DDList_ {
-	int size;
+	unsigned int size;
 	unsigned long long int esize;
 	char *front, *back;
 } DDList;
@@ -17,7 +17,7 @@ typedef struct DDList_ {
  * Return -1 if unssuccesful and 0 if successful.
  */
 
-int init_ddlist(DDList *ddlist, int esize);
+int ddlist_init(DDList *ddlist, int esize);
 
 /* Destroy the list. Free all memory. */
 
@@ -46,12 +46,12 @@ int ddlist_remove(DDList *ddlist, void **data);
 
 /* Macro that returns the size of a given list. */
 
-#define ddlist_size(ddlist) (ddlist->size)
+#define ddlist_size(ddlist) ((ddlist)->size)
 
 /* Macro that returns the front node of a given list. */
-#define ddlist_front(ddlist) (ddlist->front)
+#define ddlist_front(ddlist) ((ddlist)->front)
 
 /* Macro that returns the back node of a given list. */
-#define ddlist_back(ddlist) (ddlist->back)
+#define ddlist_back(ddlist) ((ddlist)->back)
 
-
+#endif
