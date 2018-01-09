@@ -10,6 +10,9 @@ int ddlist_init(DDList *ddlist, int e) {
 
 int ddlist_ins_next(DDList *ddlist, void *given, void *data) {
 	void *new_element;
+
+	void **extra;
+
 	if ((new_element = (void*)malloc(sizeof(void*) * 2 + ddlist->esize)) == NULL)
 		return -1;
 
@@ -25,8 +28,10 @@ int ddlist_ins_next(DDList *ddlist, void *given, void *data) {
 		*new_prev = NULL;
 	}
 	else {
-		if (given == ddlist_front(&ddlist)) {
-
+		if (given == ddlist_back(ddlist)) {
+			extra = given + sizeof(void*);
+			*extra = new_element;
+			ddlist->back = new_element;	
 		}
 	}
 	++ddlist_size(ddlist);	 

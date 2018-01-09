@@ -1,2 +1,2 @@
 rm tests
-gcc tests.c list.c -o tests
+gcc tests.c list.c -Wall -g -o tests
