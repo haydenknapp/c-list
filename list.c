@@ -28,11 +28,14 @@ int ddlist_ins_next(DDList *ddlist, void *given, void *data) {
 		*new_prev = NULL;
 	}
 	else {
+		extra = given + sizeof(void*);
+		*extra = new_element;
 		if (given == ddlist_back(ddlist)) {
-			extra = given + sizeof(void*);
-			*extra = new_element;
 			ddlist->back = new_element;	
 		}
+		else {
+			/* get loc of the current next after given */
+
 	}
 	++ddlist_size(ddlist);	 
 	return 0;

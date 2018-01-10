@@ -56,10 +56,10 @@ int ddlist_remove(DDList *ddlist, void **data);
 #define ddlist_back(ddlist) ((ddlist)->back)
 
 /* return the next element. */
-#define ddlist_next(element) ((void**)(element + sizeof(void*)))
+#define ddlist_next(element) (*(void**)(element + sizeof(void*)))
 
 /* return the previous element.*/
-#define ddlist_prev(element) ((void**)(element))
+#define ddlist_prev(element) (*(void**)(element))
 
 /* return the data of an element */
 #define ddlist_data(element) (element + sizeof(void*) * 2)
