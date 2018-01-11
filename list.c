@@ -12,6 +12,7 @@ int ddlist_ins_next(DDList *ddlist, void *given, void *data) {
 	void *new_element;
 
 	void **extra;
+	void **extra2;
 
 	if ((new_element = (void*)malloc(sizeof(void*) * 2 + ddlist->esize)) == NULL)
 		return -1;
@@ -35,6 +36,17 @@ int ddlist_ins_next(DDList *ddlist, void *given, void *data) {
 		}
 		else {
 			/* get loc of the current next after given */
+			extra = given + sizeof(void*);
+			
+			/* get the loc of the pointer to the next node of
+			 * the new element and set it to extra */
+			extra2 = new_element + sizeof(void*);
+			*extra2 = extra;
+
+			/* change the value of extra (the next pointer
+			 * in the given node) to the new node. */
+			*extra = new_element;
+		}
 
 	}
 	++ddlist_size(ddlist);	 
