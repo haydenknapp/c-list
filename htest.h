@@ -1,7 +1,7 @@
 /* Hayden Knapp
  *
  * This is a special yet not so special testing library that should provide more
- * insight than just simple insertions.
+ * insight than just simple assertions.
  */
 
 #include <stdio.h>
@@ -27,7 +27,7 @@ void htest_stop() {
 /* a is the variable, b is the expected value which should probably be held constant. */
 #define htest_equal(a, b) {\
 	if (a != b) {\
-		printf("Test at line %d failed in %s:\n\tExpected %d but found %d.\n\n", __LINE__, __func__,  b, a);\
+		printf("Test at line %d failed in %s:\n\tExpected %d but found %d.\n\n", __LINE__, __func__,  (int)b, (int)a);\
 		++htest_failed;\
 	}\
 	else {\

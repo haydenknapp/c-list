@@ -76,6 +76,9 @@ void test_003_ins_next() {
 	htest_equal(ddlist_front(&ddlist), prev_front);
 	htest_equal(ddlist_back(&ddlist), prev_back);
 
+	/* assert that we can reach the back from the front by */
+	htest_equal(ddlist_next(ddlist_next(ddlist_front(&ddlist))), ddlist_back(&ddlist));
+
 	/* get the next until at the back and ensure it is equal to n10 */
 	htest_equal(*(int*)ddlist_data(ddlist_next(ddlist_next(ddlist_front(&ddlist)))), n10);
 }
@@ -89,3 +92,4 @@ int main() {
 
 	htest_stop();
 }
+
