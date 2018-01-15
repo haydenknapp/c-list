@@ -36,7 +36,8 @@ int ddlist_ins_next(DDList *ddlist, void *given, void *data) {
 		}
 		else {
 			/* get loc of the current next after given */
-			extra = given + sizeof(void*);
+			//extra = given + sizeof(void*);
+			extra = ddlist_next(given);
 			
 			/* get the loc of the pointer to the next node of
 			 * the new element and set it to extra */

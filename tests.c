@@ -81,6 +81,27 @@ void test_003_ins_next() {
 
 	/* get the next until at the back and ensure it is equal to n10 */
 	htest_equal(*(int*)ddlist_data(ddlist_next(ddlist_next(ddlist_front(&ddlist)))), n10);
+
+	/* make a list of in order digits then go back through the list
+	 * and ensure that they are correct.
+	 */
+	DDList in_order;
+	ddlist_init(&in_order, sizeof(int));
+#define N1 1024
+	for (int i = 0; i < N1; ++i) {
+		ddlist_ins_next(&in_order, ddlist_back(&in_order), &i);
+	}
+	void *current = ddlist_front(&in_order);
+	for (int i = 0; i < N1; ++i) {
+		htest_equal(*(int*)ddlist_data(current), i);
+		current = ddlist_next(current);
+	}
+	/* go back backwards. */
+	current = ddlist_back(&in_order);
+	for (int i = ddlist_size(&in_order) - 1; i >= 0; --i) {
+		htest_equal(*(int*)ddlist_data(current), i);
+		current = ddlist_prev(current);
+	}
 }
 	
 int main() {
